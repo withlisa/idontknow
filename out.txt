@@ -1,0 +1,1957 @@
+D:\py_c\python.exe D:/geecat/read_data_html_1210/ast11.py
+Module(
+    body=[
+        Import(
+            lineno=3,
+            col_offset=0,
+            names=[alias(name='sys', asname=None)],
+        ),
+        Import(
+            lineno=4,
+            col_offset=0,
+            names=[alias(name='re', asname=None)],
+        ),
+        ImportFrom(
+            lineno=5,
+            col_offset=0,
+            module='bs4',
+            names=[alias(name='BeautifulSoup', asname=None)],
+            level=0,
+        ),
+        ImportFrom(
+            lineno=6,
+            col_offset=0,
+            module='mechanize',
+            names=[alias(name='Browser', asname=None)],
+            level=0,
+        ),
+        Import(
+            lineno=7,
+            col_offset=0,
+            names=[alias(name='xml.etree.ElementTree', asname='ET')],
+        ),
+        Import(
+            lineno=8,
+            col_offset=0,
+            names=[alias(name='os.path', asname=None)],
+        ),
+        Assign(
+            lineno=21,
+            col_offset=0,
+            targets=[Name(lineno=21, col_offset=0, id='onlineDictionaries', ctx=Store())],
+            value=Tuple(
+                lineno=22,
+                col_offset=0,
+                elts=[
+                    Dict(
+                        lineno=22,
+                        col_offset=0,
+                        keys=[
+                            Str(lineno=23, col_offset=1, s='id'),
+                            Str(lineno=24, col_offset=4, s='form'),
+                            Str(lineno=25, col_offset=4, s='grap'),
+                            Str(lineno=26, col_offset=4, s='inputField'),
+                            Str(lineno=27, col_offset=4, s='type'),
+                            Str(lineno=28, col_offset=4, s='url'),
+                            Str(lineno=29, col_offset=4, s='value'),
+                        ],
+                        values=[
+                            Str(lineno=23, col_offset=6, s='TDK'),
+                            Str(lineno=24, col_offset=12, s='lehcelerform'),
+                            Str(lineno=25, col_offset=12, s='td'),
+                            Str(lineno=26, col_offset=18, s='keyword'),
+                            Str(lineno=27, col_offset=12, s='class'),
+                            Str(lineno=28, col_offset=11, s='http://tdk.org.tr/index.php?option=com_esanlamlar&view=esanlamlar'),
+                            Str(lineno=29, col_offset=13, s='meaning'),
+                        ],
+                    ),
+                    Dict(
+                        lineno=31,
+                        col_offset=0,
+                        keys=[
+                            Str(lineno=32, col_offset=1, s='id'),
+                            Str(lineno=33, col_offset=4, s='form'),
+                            Str(lineno=34, col_offset=4, s='grap'),
+                            Str(lineno=35, col_offset=4, s='inputField'),
+                            Str(lineno=36, col_offset=4, s='type'),
+                            Str(lineno=37, col_offset=4, s='url'),
+                            Str(lineno=38, col_offset=4, s='value'),
+                        ],
+                        values=[
+                            Str(lineno=32, col_offset=6, s='DEU'),
+                            Str(lineno=33, col_offset=12, s='ctl01'),
+                            Str(lineno=34, col_offset=12, s='font'),
+                            Str(lineno=35, col_offset=18, s='TextBox1'),
+                            Str(lineno=36, col_offset=12, s='color'),
+                            Str(lineno=37, col_offset=11, s='http://nlpapps.cs.deu.edu.tr/esveyakin/sonuc.aspx'),
+                            Str(lineno=38, col_offset=13, s='CadetBlue'),
+                        ],
+                    ),
+                ],
+                ctx=Load(),
+            ),
+        ),
+        Assign(
+            lineno=41,
+            col_offset=0,
+            targets=[Name(lineno=41, col_offset=0, id='storageName', ctx=Store())],
+            value=Str(lineno=41, col_offset=14, s='mySynonym.xml'),
+        ),
+        Assign(
+            lineno=42,
+            col_offset=0,
+            targets=[Name(lineno=42, col_offset=0, id='localDictName', ctx=Store())],
+            value=Str(lineno=42, col_offset=16, s='kelime-esanlamlisi.txt'),
+        ),
+        Assign(
+            lineno=43,
+            col_offset=0,
+            targets=[Name(lineno=43, col_offset=0, id='fileArgumentTag', ctx=Store())],
+            value=Str(lineno=43, col_offset=18, s='-f'),
+        ),
+        Assign(
+            lineno=44,
+            col_offset=0,
+            targets=[Name(lineno=44, col_offset=0, id='startupForXML', ctx=Store())],
+            value=Str(lineno=44, col_offset=16, s='<data>\n\t<word value="bilgisayar">\n\t\t<synonym id="0" dict="TDK">elektronik beyin</synonym>\n\t\t<synonym id="1" dict="google">kompiter</synonym>\n\t</word>\n</data>'),
+        ),
+        FunctionDef(
+            lineno=50,
+            col_offset=0,
+            name='writeElementToXMLFile',
+            args=arguments(
+                args=[
+                    arg(lineno=50, col_offset=26, arg='element', annotation=None),
+                    arg(lineno=50, col_offset=35, arg='isExist', annotation=None),
+                ],
+                vararg=None,
+                kwonlyargs=[],
+                kw_defaults=[],
+                kwarg=None,
+                defaults=[],
+            ),
+            body=[
+                Assign(
+                    lineno=51,
+                    col_offset=1,
+                    targets=[Name(lineno=51, col_offset=1, id='root', ctx=Store())],
+                    value=Call(
+                        lineno=51,
+                        col_offset=8,
+                        func=Attribute(
+                            lineno=51,
+                            col_offset=8,
+                            value=Name(lineno=51, col_offset=8, id='mySynonym', ctx=Load()),
+                            attr='getroot',
+                            ctx=Load(),
+                        ),
+                        args=[],
+                        keywords=[],
+                    ),
+                ),
+                If(
+                    lineno=52,
+                    col_offset=1,
+                    test=UnaryOp(
+                        lineno=52,
+                        col_offset=5,
+                        op=Not(),
+                        operand=Name(lineno=52, col_offset=9, id='isExist', ctx=Load()),
+                    ),
+                    body=[
+                        Expr(
+                            lineno=53,
+                            col_offset=5,
+                            value=Call(
+                                lineno=53,
+                                col_offset=5,
+                                func=Attribute(
+                                    lineno=53,
+                                    col_offset=5,
+                                    value=Name(lineno=53, col_offset=5, id='root', ctx=Load()),
+                                    attr='append',
+                                    ctx=Load(),
+                                ),
+                                args=[Name(lineno=53, col_offset=17, id='element', ctx=Load())],
+                                keywords=[],
+                            ),
+                        ),
+                    ],
+                    orelse=[],
+                ),
+                Expr(
+                    lineno=54,
+                    col_offset=1,
+                    value=Call(
+                        lineno=54,
+                        col_offset=1,
+                        func=Name(lineno=54, col_offset=1, id='prettyPrintToXML', ctx=Load()),
+                        args=[Name(lineno=54, col_offset=18, id='root', ctx=Load())],
+                        keywords=[],
+                    ),
+                ),
+                Expr(
+                    lineno=55,
+                    col_offset=1,
+                    value=Call(
+                        lineno=55,
+                        col_offset=1,
+                        func=Attribute(
+                            lineno=55,
+                            col_offset=1,
+                            value=Name(lineno=55, col_offset=1, id='mySynonym', ctx=Load()),
+                            attr='write',
+                            ctx=Load(),
+                        ),
+                        args=[Name(lineno=55, col_offset=17, id='storageName', ctx=Load())],
+                        keywords=[],
+                    ),
+                ),
+            ],
+            decorator_list=[],
+            returns=None,
+        ),
+        FunctionDef(
+            lineno=58,
+            col_offset=0,
+            name='onlineSearch',
+            args=arguments(
+                args=[arg(lineno=58, col_offset=17, arg='word', annotation=None)],
+                vararg=None,
+                kwonlyargs=[],
+                kw_defaults=[],
+                kwarg=None,
+                defaults=[],
+            ),
+            body=[
+                Assign(
+                    lineno=59,
+                    col_offset=1,
+                    targets=[Name(lineno=59, col_offset=1, id='myBrowser', ctx=Store())],
+                    value=Call(
+                        lineno=59,
+                        col_offset=13,
+                        func=Name(lineno=59, col_offset=13, id='Browser', ctx=Load()),
+                        args=[],
+                        keywords=[],
+                    ),
+                ),
+                Assign(
+                    lineno=60,
+                    col_offset=1,
+                    targets=[
+                        Tuple(
+                            lineno=60,
+                            col_offset=1,
+                            elts=[
+                                Name(lineno=60, col_offset=1, id='newWord', ctx=Store()),
+                                Name(lineno=60, col_offset=10, id='isExist', ctx=Store()),
+                            ],
+                            ctx=Store(),
+                        ),
+                    ],
+                    value=Call(
+                        lineno=60,
+                        col_offset=20,
+                        func=Name(lineno=60, col_offset=20, id='isWordExist', ctx=Load()),
+                        args=[Name(lineno=60, col_offset=32, id='word', ctx=Load())],
+                        keywords=[],
+                    ),
+                ),
+                Assign(
+                    lineno=61,
+                    col_offset=1,
+                    targets=[Name(lineno=61, col_offset=1, id='synonymID', ctx=Store())],
+                    value=Call(
+                        lineno=61,
+                        col_offset=13,
+                        func=Name(lineno=61, col_offset=13, id='len', ctx=Load()),
+                        args=[Name(lineno=61, col_offset=17, id='newWord', ctx=Load())],
+                        keywords=[],
+                    ),
+                ),
+                For(
+                    lineno=63,
+                    col_offset=1,
+                    target=Name(lineno=63, col_offset=5, id='dict', ctx=Store()),
+                    iter=Name(lineno=63, col_offset=13, id='onlineDictionaries', ctx=Load()),
+                    body=[
+                        Expr(
+                            lineno=64,
+                            col_offset=2,
+                            value=Call(
+                                lineno=64,
+                                col_offset=2,
+                                func=Attribute(
+                                    lineno=64,
+                                    col_offset=2,
+                                    value=Name(lineno=64, col_offset=2, id='myBrowser', ctx=Load()),
+                                    attr='open',
+                                    ctx=Load(),
+                                ),
+                                args=[
+                                    Subscript(
+                                        lineno=64,
+                                        col_offset=17,
+                                        value=Name(lineno=64, col_offset=17, id='dict', ctx=Load()),
+                                        slice=Index(
+                                            value=Str(lineno=64, col_offset=22, s='url'),
+                                        ),
+                                        ctx=Load(),
+                                    ),
+                                ],
+                                keywords=[],
+                            ),
+                        ),
+                        Expr(
+                            lineno=65,
+                            col_offset=2,
+                            value=Call(
+                                lineno=65,
+                                col_offset=2,
+                                func=Attribute(
+                                    lineno=65,
+                                    col_offset=2,
+                                    value=Name(lineno=65, col_offset=2, id='myBrowser', ctx=Load()),
+                                    attr='select_form',
+                                    ctx=Load(),
+                                ),
+                                args=[],
+                                keywords=[
+                                    keyword(
+                                        arg='name',
+                                        value=Subscript(
+                                            lineno=65,
+                                            col_offset=31,
+                                            value=Name(lineno=65, col_offset=31, id='dict', ctx=Load()),
+                                            slice=Index(
+                                                value=Str(lineno=65, col_offset=36, s='form'),
+                                            ),
+                                            ctx=Load(),
+                                        ),
+                                    ),
+                                ],
+                            ),
+                        ),
+                        Assign(
+                            lineno=66,
+                            col_offset=2,
+                            targets=[
+                                Subscript(
+                                    lineno=66,
+                                    col_offset=2,
+                                    value=Name(lineno=66, col_offset=2, id='myBrowser', ctx=Load()),
+                                    slice=Index(
+                                        value=Subscript(
+                                            lineno=66,
+                                            col_offset=12,
+                                            value=Name(lineno=66, col_offset=12, id='dict', ctx=Load()),
+                                            slice=Index(
+                                                value=Str(lineno=66, col_offset=17, s='inputField'),
+                                            ),
+                                            ctx=Load(),
+                                        ),
+                                    ),
+                                    ctx=Store(),
+                                ),
+                            ],
+                            value=Name(lineno=66, col_offset=34, id='word', ctx=Load()),
+                        ),
+                        Assign(
+                            lineno=67,
+                            col_offset=2,
+                            targets=[Name(lineno=67, col_offset=2, id='response', ctx=Store())],
+                            value=Call(
+                                lineno=67,
+                                col_offset=13,
+                                func=Attribute(
+                                    lineno=67,
+                                    col_offset=13,
+                                    value=Name(lineno=67, col_offset=13, id='myBrowser', ctx=Load()),
+                                    attr='submit',
+                                    ctx=Load(),
+                                ),
+                                args=[],
+                                keywords=[],
+                            ),
+                        ),
+                        Assign(
+                            lineno=68,
+                            col_offset=2,
+                            targets=[Name(lineno=68, col_offset=2, id='html', ctx=Store())],
+                            value=Call(
+                                lineno=68,
+                                col_offset=9,
+                                func=Attribute(
+                                    lineno=68,
+                                    col_offset=9,
+                                    value=Call(
+                                        lineno=68,
+                                        col_offset=9,
+                                        func=Attribute(
+                                            lineno=68,
+                                            col_offset=9,
+                                            value=Name(lineno=68, col_offset=9, id='myBrowser', ctx=Load()),
+                                            attr='response',
+                                            ctx=Load(),
+                                        ),
+                                        args=[],
+                                        keywords=[],
+                                    ),
+                                    attr='read',
+                                    ctx=Load(),
+                                ),
+                                args=[],
+                                keywords=[],
+                            ),
+                        ),
+                        Assign(
+                            lineno=69,
+                            col_offset=2,
+                            targets=[Name(lineno=69, col_offset=2, id='soup', ctx=Store())],
+                            value=Call(
+                                lineno=69,
+                                col_offset=9,
+                                func=Name(lineno=69, col_offset=9, id='BeautifulSoup', ctx=Load()),
+                                args=[Name(lineno=69, col_offset=23, id='html', ctx=Load())],
+                                keywords=[],
+                            ),
+                        ),
+                        Assign(
+                            lineno=70,
+                            col_offset=2,
+                            targets=[Name(lineno=70, col_offset=2, id='cols', ctx=Store())],
+                            value=Call(
+                                lineno=70,
+                                col_offset=9,
+                                func=Attribute(
+                                    lineno=70,
+                                    col_offset=9,
+                                    value=Name(lineno=70, col_offset=9, id='soup', ctx=Load()),
+                                    attr='findAll',
+                                    ctx=Load(),
+                                ),
+                                args=[
+                                    Subscript(
+                                        lineno=70,
+                                        col_offset=22,
+                                        value=Name(lineno=70, col_offset=22, id='dict', ctx=Load()),
+                                        slice=Index(
+                                            value=Str(lineno=70, col_offset=27, s='grap'),
+                                        ),
+                                        ctx=Load(),
+                                    ),
+                                ],
+                                keywords=[
+                                    keyword(
+                                        arg='attrs',
+                                        value=Dict(
+                                            lineno=70,
+                                            col_offset=42,
+                                            keys=[
+                                                Subscript(
+                                                    lineno=70,
+                                                    col_offset=43,
+                                                    value=Name(lineno=70, col_offset=43, id='dict', ctx=Load()),
+                                                    slice=Index(
+                                                        value=Str(lineno=70, col_offset=48, s='type'),
+                                                    ),
+                                                    ctx=Load(),
+                                                ),
+                                            ],
+                                            values=[
+                                                Subscript(
+                                                    lineno=70,
+                                                    col_offset=58,
+                                                    value=Name(lineno=70, col_offset=58, id='dict', ctx=Load()),
+                                                    slice=Index(
+                                                        value=Str(lineno=70, col_offset=63, s='value'),
+                                                    ),
+                                                    ctx=Load(),
+                                                ),
+                                            ],
+                                        ),
+                                    ),
+                                ],
+                            ),
+                        ),
+                        If(
+                            lineno=71,
+                            col_offset=2,
+                            test=BoolOp(
+                                lineno=71,
+                                col_offset=6,
+                                op=And(),
+                                values=[
+                                    Compare(
+                                        lineno=71,
+                                        col_offset=6,
+                                        left=Call(
+                                            lineno=71,
+                                            col_offset=6,
+                                            func=Name(lineno=71, col_offset=6, id='len', ctx=Load()),
+                                            args=[Name(lineno=71, col_offset=10, id='cols', ctx=Load())],
+                                            keywords=[],
+                                        ),
+                                        ops=[NotEq()],
+                                        comparators=[Num(lineno=71, col_offset=19, n=0)],
+                                    ),
+                                    UnaryOp(
+                                        lineno=71,
+                                        col_offset=25,
+                                        op=Not(),
+                                        operand=Call(
+                                            lineno=71,
+                                            col_offset=29,
+                                            func=Name(lineno=71, col_offset=29, id='isSynonymExist', ctx=Load()),
+                                            args=[
+                                                Name(lineno=71, col_offset=44, id='newWord', ctx=Load()),
+                                                Call(
+                                                    lineno=71,
+                                                    col_offset=53,
+                                                    func=Attribute(
+                                                        lineno=71,
+                                                        col_offset=53,
+                                                        value=Subscript(
+                                                            lineno=71,
+                                                            col_offset=53,
+                                                            value=Name(lineno=71, col_offset=53, id='cols', ctx=Load()),
+                                                            slice=Index(
+                                                                value=Num(lineno=71, col_offset=58, n=0),
+                                                            ),
+                                                            ctx=Load(),
+                                                        ),
+                                                        attr='renderContents',
+                                                        ctx=Load(),
+                                                    ),
+                                                    args=[],
+                                                    keywords=[],
+                                                ),
+                                            ],
+                                            keywords=[],
+                                        ),
+                                    ),
+                                ],
+                            ),
+                            body=[
+                                Expr(
+                                    lineno=72,
+                                    col_offset=6,
+                                    value=Call(
+                                        lineno=72,
+                                        col_offset=6,
+                                        func=Name(lineno=72, col_offset=6, id='storeResult', ctx=Load()),
+                                        args=[
+                                            Name(lineno=72, col_offset=18, id='newWord', ctx=Load()),
+                                            Subscript(
+                                                lineno=72,
+                                                col_offset=27,
+                                                value=Name(lineno=72, col_offset=27, id='dict', ctx=Load()),
+                                                slice=Index(
+                                                    value=Str(lineno=72, col_offset=32, s='id'),
+                                                ),
+                                                ctx=Load(),
+                                            ),
+                                            Call(
+                                                lineno=72,
+                                                col_offset=39,
+                                                func=Name(lineno=72, col_offset=39, id='str', ctx=Load()),
+                                                args=[Name(lineno=72, col_offset=43, id='synonymID', ctx=Load())],
+                                                keywords=[],
+                                            ),
+                                            Call(
+                                                lineno=72,
+                                                col_offset=55,
+                                                func=Attribute(
+                                                    lineno=72,
+                                                    col_offset=55,
+                                                    value=Subscript(
+                                                        lineno=72,
+                                                        col_offset=55,
+                                                        value=Name(lineno=72, col_offset=55, id='cols', ctx=Load()),
+                                                        slice=Index(
+                                                            value=Num(lineno=72, col_offset=60, n=0),
+                                                        ),
+                                                        ctx=Load(),
+                                                    ),
+                                                    attr='renderContents',
+                                                    ctx=Load(),
+                                                ),
+                                                args=[],
+                                                keywords=[],
+                                            ),
+                                        ],
+                                        keywords=[],
+                                    ),
+                                ),
+                                AugAssign(
+                                    lineno=73,
+                                    col_offset=6,
+                                    target=Name(lineno=73, col_offset=6, id='synonymID', ctx=Store()),
+                                    op=Add(),
+                                    value=Num(lineno=73, col_offset=19, n=1),
+                                ),
+                            ],
+                            orelse=[
+                                If(
+                                    lineno=74,
+                                    col_offset=7,
+                                    test=Compare(
+                                        lineno=74,
+                                        col_offset=8,
+                                        left=Call(
+                                            lineno=74,
+                                            col_offset=8,
+                                            func=Name(lineno=74, col_offset=8, id='len', ctx=Load()),
+                                            args=[Name(lineno=74, col_offset=12, id='cols', ctx=Load())],
+                                            keywords=[],
+                                        ),
+                                        ops=[Eq()],
+                                        comparators=[Num(lineno=74, col_offset=21, n=0)],
+                                    ),
+                                    body=[
+                                        Expr(
+                                            lineno=75,
+                                            col_offset=3,
+                                            value=Call(
+                                                lineno=75,
+                                                col_offset=3,
+                                                func=Name(lineno=75, col_offset=3, id='print', ctx=Load()),
+                                                args=[
+                                                    BinOp(
+                                                        lineno=75,
+                                                        col_offset=77,
+                                                        left=BinOp(
+                                                            lineno=75,
+                                                            col_offset=70,
+                                                            left=BinOp(
+                                                                lineno=75,
+                                                                col_offset=63,
+                                                                left=BinOp(
+                                                                    lineno=75,
+                                                                    col_offset=42,
+                                                                    left=BinOp(
+                                                                        lineno=75,
+                                                                        col_offset=10,
+                                                                        left=Str(lineno=75, col_offset=10, s='no result from '),
+                                                                        op=Add(),
+                                                                        right=Subscript(
+                                                                            lineno=75,
+                                                                            col_offset=31,
+                                                                            value=Name(lineno=75, col_offset=31, id='dict', ctx=Load()),
+                                                                            slice=Index(
+                                                                                value=Str(lineno=75, col_offset=36, s='id'),
+                                                                            ),
+                                                                            ctx=Load(),
+                                                                        ),
+                                                                    ),
+                                                                    op=Add(),
+                                                                    right=Str(lineno=75, col_offset=44, s=' dictionary for '),
+                                                                ),
+                                                                op=Add(),
+                                                                right=Str(lineno=75, col_offset=65, s='"'),
+                                                            ),
+                                                            op=Add(),
+                                                            right=Name(lineno=75, col_offset=72, id='word', ctx=Load()),
+                                                        ),
+                                                        op=Add(),
+                                                        right=Str(lineno=75, col_offset=79, s='"'),
+                                                    ),
+                                                ],
+                                                keywords=[],
+                                            ),
+                                        ),
+                                    ],
+                                    orelse=[],
+                                ),
+                            ],
+                        ),
+                    ],
+                    orelse=[],
+                ),
+                If(
+                    lineno=76,
+                    col_offset=1,
+                    test=Compare(
+                        lineno=76,
+                        col_offset=5,
+                        left=Call(
+                            lineno=76,
+                            col_offset=5,
+                            func=Name(lineno=76, col_offset=5, id='len', ctx=Load()),
+                            args=[Name(lineno=76, col_offset=9, id='newWord', ctx=Load())],
+                            keywords=[],
+                        ),
+                        ops=[NotEq()],
+                        comparators=[Num(lineno=76, col_offset=21, n=0)],
+                    ),
+                    body=[
+                        Expr(
+                            lineno=77,
+                            col_offset=2,
+                            value=Call(
+                                lineno=77,
+                                col_offset=2,
+                                func=Name(lineno=77, col_offset=2, id='writeElementToXMLFile', ctx=Load()),
+                                args=[
+                                    Name(lineno=77, col_offset=24, id='newWord', ctx=Load()),
+                                    Name(lineno=77, col_offset=33, id='isExist', ctx=Load()),
+                                ],
+                                keywords=[],
+                            ),
+                        ),
+                    ],
+                    orelse=[],
+                ),
+            ],
+            decorator_list=[],
+            returns=None,
+        ),
+        FunctionDef(
+            lineno=80,
+            col_offset=0,
+            name='localSearch',
+            args=arguments(
+                args=[arg(lineno=80, col_offset=16, arg='word', annotation=None)],
+                vararg=None,
+                kwonlyargs=[],
+                kw_defaults=[],
+                kwarg=None,
+                defaults=[],
+            ),
+            body=[
+                Assign(
+                    lineno=81,
+                    col_offset=4,
+                    targets=[Name(lineno=81, col_offset=4, id='localDict', ctx=Store())],
+                    value=Call(
+                        lineno=81,
+                        col_offset=16,
+                        func=Name(lineno=81, col_offset=16, id='open', ctx=Load()),
+                        args=[
+                            Name(lineno=81, col_offset=21, id='localDictName', ctx=Load()),
+                            Str(lineno=81, col_offset=36, s='r'),
+                        ],
+                        keywords=[],
+                    ),
+                ),
+                Assign(
+                    lineno=82,
+                    col_offset=4,
+                    targets=[
+                        Tuple(
+                            lineno=82,
+                            col_offset=4,
+                            elts=[
+                                Name(lineno=82, col_offset=4, id='newWord', ctx=Store()),
+                                Name(lineno=82, col_offset=13, id='isExist', ctx=Store()),
+                            ],
+                            ctx=Store(),
+                        ),
+                    ],
+                    value=Call(
+                        lineno=82,
+                        col_offset=23,
+                        func=Name(lineno=82, col_offset=23, id='isWordExist', ctx=Load()),
+                        args=[Name(lineno=82, col_offset=35, id='word', ctx=Load())],
+                        keywords=[],
+                    ),
+                ),
+                Assign(
+                    lineno=83,
+                    col_offset=4,
+                    targets=[Name(lineno=83, col_offset=4, id='synonymID', ctx=Store())],
+                    value=Call(
+                        lineno=83,
+                        col_offset=16,
+                        func=Name(lineno=83, col_offset=16, id='len', ctx=Load()),
+                        args=[Name(lineno=83, col_offset=20, id='newWord', ctx=Load())],
+                        keywords=[],
+                    ),
+                ),
+                For(
+                    lineno=85,
+                    col_offset=4,
+                    target=Name(lineno=85, col_offset=8, id='line', ctx=Store()),
+                    iter=Name(lineno=85, col_offset=16, id='localDict', ctx=Load()),
+                    body=[
+                        If(
+                            lineno=86,
+                            col_offset=8,
+                            test=BoolOp(
+                                lineno=86,
+                                col_offset=12,
+                                op=And(),
+                                values=[
+                                    Compare(
+                                        lineno=86,
+                                        col_offset=12,
+                                        left=Name(lineno=86, col_offset=12, id='word', ctx=Load()),
+                                        ops=[Eq()],
+                                        comparators=[
+                                            Subscript(
+                                                lineno=86,
+                                                col_offset=20,
+                                                value=Call(
+                                                    lineno=86,
+                                                    col_offset=20,
+                                                    func=Attribute(
+                                                        lineno=86,
+                                                        col_offset=20,
+                                                        value=Name(lineno=86, col_offset=20, id='line', ctx=Load()),
+                                                        attr='split',
+                                                        ctx=Load(),
+                                                    ),
+                                                    args=[Str(lineno=86, col_offset=31, s='\t')],
+                                                    keywords=[],
+                                                ),
+                                                slice=Index(
+                                                    value=Num(lineno=86, col_offset=37, n=0),
+                                                ),
+                                                ctx=Load(),
+                                            ),
+                                        ],
+                                    ),
+                                    UnaryOp(
+                                        lineno=86,
+                                        col_offset=44,
+                                        op=Not(),
+                                        operand=Call(
+                                            lineno=86,
+                                            col_offset=48,
+                                            func=Name(lineno=86, col_offset=48, id='isSynonymExist', ctx=Load()),
+                                            args=[
+                                                Name(lineno=86, col_offset=63, id='newWord', ctx=Load()),
+                                                Subscript(
+                                                    lineno=86,
+                                                    col_offset=72,
+                                                    value=Call(
+                                                        lineno=86,
+                                                        col_offset=72,
+                                                        func=Attribute(
+                                                            lineno=86,
+                                                            col_offset=72,
+                                                            value=Subscript(
+                                                                lineno=86,
+                                                                col_offset=72,
+                                                                value=Call(
+                                                                    lineno=86,
+                                                                    col_offset=72,
+                                                                    func=Attribute(
+                                                                        lineno=86,
+                                                                        col_offset=72,
+                                                                        value=Name(lineno=86, col_offset=72, id='line', ctx=Load()),
+                                                                        attr='split',
+                                                                        ctx=Load(),
+                                                                    ),
+                                                                    args=[Str(lineno=86, col_offset=83, s='\t')],
+                                                                    keywords=[],
+                                                                ),
+                                                                slice=Index(
+                                                                    value=Num(lineno=86, col_offset=89, n=1),
+                                                                ),
+                                                                ctx=Load(),
+                                                            ),
+                                                            attr='split',
+                                                            ctx=Load(),
+                                                        ),
+                                                        args=[Str(lineno=86, col_offset=98, s='\n')],
+                                                        keywords=[],
+                                                    ),
+                                                    slice=Index(
+                                                        value=Num(lineno=86, col_offset=104, n=0),
+                                                    ),
+                                                    ctx=Load(),
+                                                ),
+                                            ],
+                                            keywords=[],
+                                        ),
+                                    ),
+                                ],
+                            ),
+                            body=[
+                                Expr(
+                                    lineno=87,
+                                    col_offset=12,
+                                    value=Call(
+                                        lineno=87,
+                                        col_offset=12,
+                                        func=Name(lineno=87, col_offset=12, id='storeResult', ctx=Load()),
+                                        args=[
+                                            Name(lineno=87, col_offset=24, id='newWord', ctx=Load()),
+                                            Str(lineno=87, col_offset=33, s='localDict'),
+                                            Call(
+                                                lineno=87,
+                                                col_offset=46,
+                                                func=Name(lineno=87, col_offset=46, id='str', ctx=Load()),
+                                                args=[Name(lineno=87, col_offset=50, id='synonymID', ctx=Load())],
+                                                keywords=[],
+                                            ),
+                                            Subscript(
+                                                lineno=87,
+                                                col_offset=62,
+                                                value=Call(
+                                                    lineno=87,
+                                                    col_offset=62,
+                                                    func=Attribute(
+                                                        lineno=87,
+                                                        col_offset=62,
+                                                        value=Subscript(
+                                                            lineno=87,
+                                                            col_offset=62,
+                                                            value=Call(
+                                                                lineno=87,
+                                                                col_offset=62,
+                                                                func=Attribute(
+                                                                    lineno=87,
+                                                                    col_offset=62,
+                                                                    value=Name(lineno=87, col_offset=62, id='line', ctx=Load()),
+                                                                    attr='split',
+                                                                    ctx=Load(),
+                                                                ),
+                                                                args=[Str(lineno=87, col_offset=73, s='\t')],
+                                                                keywords=[],
+                                                            ),
+                                                            slice=Index(
+                                                                value=Num(lineno=87, col_offset=79, n=1),
+                                                            ),
+                                                            ctx=Load(),
+                                                        ),
+                                                        attr='split',
+                                                        ctx=Load(),
+                                                    ),
+                                                    args=[Str(lineno=87, col_offset=88, s='\n')],
+                                                    keywords=[],
+                                                ),
+                                                slice=Index(
+                                                    value=Num(lineno=87, col_offset=94, n=0),
+                                                ),
+                                                ctx=Load(),
+                                            ),
+                                        ],
+                                        keywords=[],
+                                    ),
+                                ),
+                                AugAssign(
+                                    lineno=88,
+                                    col_offset=12,
+                                    target=Name(lineno=88, col_offset=12, id='synonymID', ctx=Store()),
+                                    op=Add(),
+                                    value=Num(lineno=88, col_offset=25, n=1),
+                                ),
+                            ],
+                            orelse=[],
+                        ),
+                    ],
+                    orelse=[],
+                ),
+                If(
+                    lineno=90,
+                    col_offset=4,
+                    test=Compare(
+                        lineno=90,
+                        col_offset=8,
+                        left=Call(
+                            lineno=90,
+                            col_offset=8,
+                            func=Name(lineno=90, col_offset=8, id='len', ctx=Load()),
+                            args=[Name(lineno=90, col_offset=12, id='newWord', ctx=Load())],
+                            keywords=[],
+                        ),
+                        ops=[NotEq()],
+                        comparators=[Num(lineno=90, col_offset=24, n=0)],
+                    ),
+                    body=[
+                        Expr(
+                            lineno=91,
+                            col_offset=8,
+                            value=Call(
+                                lineno=91,
+                                col_offset=8,
+                                func=Name(lineno=91, col_offset=8, id='writeElementToXMLFile', ctx=Load()),
+                                args=[
+                                    Name(lineno=91, col_offset=30, id='newWord', ctx=Load()),
+                                    Name(lineno=91, col_offset=39, id='isExist', ctx=Load()),
+                                ],
+                                keywords=[],
+                            ),
+                        ),
+                    ],
+                    orelse=[],
+                ),
+            ],
+            decorator_list=[],
+            returns=None,
+        ),
+        FunctionDef(
+            lineno=94,
+            col_offset=0,
+            name='prettyPrintToXML',
+            args=arguments(
+                args=[
+                    arg(lineno=94, col_offset=21, arg='elem', annotation=None),
+                    arg(lineno=94, col_offset=27, arg='level', annotation=None),
+                ],
+                vararg=None,
+                kwonlyargs=[],
+                kw_defaults=[],
+                kwarg=None,
+                defaults=[Num(lineno=94, col_offset=33, n=0)],
+            ),
+            body=[
+                Assign(
+                    lineno=96,
+                    col_offset=4,
+                    targets=[Name(lineno=96, col_offset=4, id='i', ctx=Store())],
+                    value=BinOp(
+                        lineno=96,
+                        col_offset=8,
+                        left=Str(lineno=96, col_offset=8, s='\n'),
+                        op=Add(),
+                        right=BinOp(
+                            lineno=96,
+                            col_offset=15,
+                            left=Name(lineno=96, col_offset=15, id='level', ctx=Load()),
+                            op=Mult(),
+                            right=Str(lineno=96, col_offset=21, s='    '),
+                        ),
+                    ),
+                ),
+                If(
+                    lineno=97,
+                    col_offset=4,
+                    test=Call(
+                        lineno=97,
+                        col_offset=7,
+                        func=Name(lineno=97, col_offset=7, id='len', ctx=Load()),
+                        args=[Name(lineno=97, col_offset=11, id='elem', ctx=Load())],
+                        keywords=[],
+                    ),
+                    body=[
+                        If(
+                            lineno=98,
+                            col_offset=8,
+                            test=BoolOp(
+                                lineno=98,
+                                col_offset=11,
+                                op=Or(),
+                                values=[
+                                    UnaryOp(
+                                        lineno=98,
+                                        col_offset=11,
+                                        op=Not(),
+                                        operand=Attribute(
+                                            lineno=98,
+                                            col_offset=15,
+                                            value=Name(lineno=98, col_offset=15, id='elem', ctx=Load()),
+                                            attr='text',
+                                            ctx=Load(),
+                                        ),
+                                    ),
+                                    UnaryOp(
+                                        lineno=98,
+                                        col_offset=28,
+                                        op=Not(),
+                                        operand=Call(
+                                            lineno=98,
+                                            col_offset=32,
+                                            func=Attribute(
+                                                lineno=98,
+                                                col_offset=32,
+                                                value=Attribute(
+                                                    lineno=98,
+                                                    col_offset=32,
+                                                    value=Name(lineno=98, col_offset=32, id='elem', ctx=Load()),
+                                                    attr='text',
+                                                    ctx=Load(),
+                                                ),
+                                                attr='strip',
+                                                ctx=Load(),
+                                            ),
+                                            args=[],
+                                            keywords=[],
+                                        ),
+                                    ),
+                                ],
+                            ),
+                            body=[
+                                Assign(
+                                    lineno=99,
+                                    col_offset=12,
+                                    targets=[
+                                        Attribute(
+                                            lineno=99,
+                                            col_offset=12,
+                                            value=Name(lineno=99, col_offset=12, id='elem', ctx=Load()),
+                                            attr='text',
+                                            ctx=Store(),
+                                        ),
+                                    ],
+                                    value=BinOp(
+                                        lineno=99,
+                                        col_offset=24,
+                                        left=Name(lineno=99, col_offset=24, id='i', ctx=Load()),
+                                        op=Add(),
+                                        right=Str(lineno=99, col_offset=28, s='    '),
+                                    ),
+                                ),
+                            ],
+                            orelse=[],
+                        ),
+                        If(
+                            lineno=100,
+                            col_offset=8,
+                            test=BoolOp(
+                                lineno=100,
+                                col_offset=11,
+                                op=Or(),
+                                values=[
+                                    UnaryOp(
+                                        lineno=100,
+                                        col_offset=11,
+                                        op=Not(),
+                                        operand=Attribute(
+                                            lineno=100,
+                                            col_offset=15,
+                                            value=Name(lineno=100, col_offset=15, id='elem', ctx=Load()),
+                                            attr='tail',
+                                            ctx=Load(),
+                                        ),
+                                    ),
+                                    UnaryOp(
+                                        lineno=100,
+                                        col_offset=28,
+                                        op=Not(),
+                                        operand=Call(
+                                            lineno=100,
+                                            col_offset=32,
+                                            func=Attribute(
+                                                lineno=100,
+                                                col_offset=32,
+                                                value=Attribute(
+                                                    lineno=100,
+                                                    col_offset=32,
+                                                    value=Name(lineno=100, col_offset=32, id='elem', ctx=Load()),
+                                                    attr='tail',
+                                                    ctx=Load(),
+                                                ),
+                                                attr='strip',
+                                                ctx=Load(),
+                                            ),
+                                            args=[],
+                                            keywords=[],
+                                        ),
+                                    ),
+                                ],
+                            ),
+                            body=[
+                                Assign(
+                                    lineno=101,
+                                    col_offset=12,
+                                    targets=[
+                                        Attribute(
+                                            lineno=101,
+                                            col_offset=12,
+                                            value=Name(lineno=101, col_offset=12, id='elem', ctx=Load()),
+                                            attr='tail',
+                                            ctx=Store(),
+                                        ),
+                                    ],
+                                    value=Name(lineno=101, col_offset=24, id='i', ctx=Load()),
+                                ),
+                            ],
+                            orelse=[],
+                        ),
+                        For(
+                            lineno=102,
+                            col_offset=8,
+                            target=Name(lineno=102, col_offset=12, id='elem', ctx=Store()),
+                            iter=Name(lineno=102, col_offset=20, id='elem', ctx=Load()),
+                            body=[
+                                Expr(
+                                    lineno=103,
+                                    col_offset=12,
+                                    value=Call(
+                                        lineno=103,
+                                        col_offset=12,
+                                        func=Name(lineno=103, col_offset=12, id='prettyPrintToXML', ctx=Load()),
+                                        args=[
+                                            Name(lineno=103, col_offset=29, id='elem', ctx=Load()),
+                                            BinOp(
+                                                lineno=103,
+                                                col_offset=35,
+                                                left=Name(lineno=103, col_offset=35, id='level', ctx=Load()),
+                                                op=Add(),
+                                                right=Num(lineno=103, col_offset=41, n=1),
+                                            ),
+                                        ],
+                                        keywords=[],
+                                    ),
+                                ),
+                            ],
+                            orelse=[],
+                        ),
+                        If(
+                            lineno=104,
+                            col_offset=8,
+                            test=BoolOp(
+                                lineno=104,
+                                col_offset=11,
+                                op=Or(),
+                                values=[
+                                    UnaryOp(
+                                        lineno=104,
+                                        col_offset=11,
+                                        op=Not(),
+                                        operand=Attribute(
+                                            lineno=104,
+                                            col_offset=15,
+                                            value=Name(lineno=104, col_offset=15, id='elem', ctx=Load()),
+                                            attr='tail',
+                                            ctx=Load(),
+                                        ),
+                                    ),
+                                    UnaryOp(
+                                        lineno=104,
+                                        col_offset=28,
+                                        op=Not(),
+                                        operand=Call(
+                                            lineno=104,
+                                            col_offset=32,
+                                            func=Attribute(
+                                                lineno=104,
+                                                col_offset=32,
+                                                value=Attribute(
+                                                    lineno=104,
+                                                    col_offset=32,
+                                                    value=Name(lineno=104, col_offset=32, id='elem', ctx=Load()),
+                                                    attr='tail',
+                                                    ctx=Load(),
+                                                ),
+                                                attr='strip',
+                                                ctx=Load(),
+                                            ),
+                                            args=[],
+                                            keywords=[],
+                                        ),
+                                    ),
+                                ],
+                            ),
+                            body=[
+                                Assign(
+                                    lineno=105,
+                                    col_offset=12,
+                                    targets=[
+                                        Attribute(
+                                            lineno=105,
+                                            col_offset=12,
+                                            value=Name(lineno=105, col_offset=12, id='elem', ctx=Load()),
+                                            attr='tail',
+                                            ctx=Store(),
+                                        ),
+                                    ],
+                                    value=Name(lineno=105, col_offset=24, id='i', ctx=Load()),
+                                ),
+                            ],
+                            orelse=[],
+                        ),
+                    ],
+                    orelse=[
+                        If(
+                            lineno=107,
+                            col_offset=8,
+                            test=BoolOp(
+                                lineno=107,
+                                col_offset=11,
+                                op=And(),
+                                values=[
+                                    Name(lineno=107, col_offset=11, id='level', ctx=Load()),
+                                    BoolOp(
+                                        lineno=107,
+                                        col_offset=22,
+                                        op=Or(),
+                                        values=[
+                                            UnaryOp(
+                                                lineno=107,
+                                                col_offset=22,
+                                                op=Not(),
+                                                operand=Attribute(
+                                                    lineno=107,
+                                                    col_offset=26,
+                                                    value=Name(lineno=107, col_offset=26, id='elem', ctx=Load()),
+                                                    attr='tail',
+                                                    ctx=Load(),
+                                                ),
+                                            ),
+                                            UnaryOp(
+                                                lineno=107,
+                                                col_offset=39,
+                                                op=Not(),
+                                                operand=Call(
+                                                    lineno=107,
+                                                    col_offset=43,
+                                                    func=Attribute(
+                                                        lineno=107,
+                                                        col_offset=43,
+                                                        value=Attribute(
+                                                            lineno=107,
+                                                            col_offset=43,
+                                                            value=Name(lineno=107, col_offset=43, id='elem', ctx=Load()),
+                                                            attr='tail',
+                                                            ctx=Load(),
+                                                        ),
+                                                        attr='strip',
+                                                        ctx=Load(),
+                                                    ),
+                                                    args=[],
+                                                    keywords=[],
+                                                ),
+                                            ),
+                                        ],
+                                    ),
+                                ],
+                            ),
+                            body=[
+                                Assign(
+                                    lineno=108,
+                                    col_offset=12,
+                                    targets=[
+                                        Attribute(
+                                            lineno=108,
+                                            col_offset=12,
+                                            value=Name(lineno=108, col_offset=12, id='elem', ctx=Load()),
+                                            attr='tail',
+                                            ctx=Store(),
+                                        ),
+                                    ],
+                                    value=Name(lineno=108, col_offset=24, id='i', ctx=Load()),
+                                ),
+                            ],
+                            orelse=[],
+                        ),
+                    ],
+                ),
+            ],
+            decorator_list=[],
+            returns=None,
+        ),
+        FunctionDef(
+            lineno=111,
+            col_offset=0,
+            name='analyzeFile',
+            args=arguments(
+                args=[arg(lineno=111, col_offset=16, arg='_inputFile', annotation=None)],
+                vararg=None,
+                kwonlyargs=[],
+                kw_defaults=[],
+                kwarg=None,
+                defaults=[],
+            ),
+            body=[
+                Assign(
+                    lineno=112,
+                    col_offset=1,
+                    targets=[Name(lineno=112, col_offset=1, id='inputFile', ctx=Store())],
+                    value=Call(
+                        lineno=112,
+                        col_offset=13,
+                        func=Name(lineno=112, col_offset=13, id='open', ctx=Load()),
+                        args=[
+                            Name(lineno=112, col_offset=18, id='_inputFile', ctx=Load()),
+                            Str(lineno=112, col_offset=30, s='r'),
+                        ],
+                        keywords=[],
+                    ),
+                ),
+                For(
+                    lineno=113,
+                    col_offset=1,
+                    target=Name(lineno=113, col_offset=5, id='line', ctx=Store()),
+                    iter=Name(lineno=113, col_offset=13, id='inputFile', ctx=Load()),
+                    body=[
+                        For(
+                            lineno=114,
+                            col_offset=2,
+                            target=Name(lineno=114, col_offset=6, id='word', ctx=Store()),
+                            iter=Call(
+                                lineno=114,
+                                col_offset=14,
+                                func=Attribute(
+                                    lineno=114,
+                                    col_offset=14,
+                                    value=Name(lineno=114, col_offset=14, id='line', ctx=Load()),
+                                    attr='split',
+                                    ctx=Load(),
+                                ),
+                                args=[],
+                                keywords=[],
+                            ),
+                            body=[
+                                Expr(
+                                    lineno=115,
+                                    col_offset=3,
+                                    value=Call(
+                                        lineno=115,
+                                        col_offset=3,
+                                        func=Name(lineno=115, col_offset=3, id='onlineSearch', ctx=Load()),
+                                        args=[Name(lineno=115, col_offset=16, id='word', ctx=Load())],
+                                        keywords=[],
+                                    ),
+                                ),
+                                Expr(
+                                    lineno=116,
+                                    col_offset=3,
+                                    value=Call(
+                                        lineno=116,
+                                        col_offset=3,
+                                        func=Name(lineno=116, col_offset=3, id='localSearch', ctx=Load()),
+                                        args=[Name(lineno=116, col_offset=15, id='word', ctx=Load())],
+                                        keywords=[],
+                                    ),
+                                ),
+                            ],
+                            orelse=[],
+                        ),
+                    ],
+                    orelse=[],
+                ),
+            ],
+            decorator_list=[],
+            returns=None,
+        ),
+        FunctionDef(
+            lineno=119,
+            col_offset=0,
+            name='storeResult',
+            args=arguments(
+                args=[
+                    arg(lineno=119, col_offset=16, arg='newWord', annotation=None),
+                    arg(lineno=119, col_offset=25, arg='dictionary', annotation=None),
+                    arg(lineno=119, col_offset=37, arg='synonymID', annotation=None),
+                    arg(lineno=119, col_offset=48, arg='result', annotation=None),
+                ],
+                vararg=None,
+                kwonlyargs=[],
+                kw_defaults=[],
+                kwarg=None,
+                defaults=[],
+            ),
+            body=[
+                Assign(
+                    lineno=120,
+                    col_offset=1,
+                    targets=[Name(lineno=120, col_offset=1, id='newWordSynonym', ctx=Store())],
+                    value=Call(
+                        lineno=120,
+                        col_offset=18,
+                        func=Attribute(
+                            lineno=120,
+                            col_offset=18,
+                            value=Name(lineno=120, col_offset=18, id='ET', ctx=Load()),
+                            attr='SubElement',
+                            ctx=Load(),
+                        ),
+                        args=[
+                            Name(lineno=120, col_offset=32, id='newWord', ctx=Load()),
+                            Str(lineno=120, col_offset=41, s='synonym'),
+                        ],
+                        keywords=[],
+                    ),
+                ),
+                Assign(
+                    lineno=121,
+                    col_offset=1,
+                    targets=[
+                        Attribute(
+                            lineno=121,
+                            col_offset=1,
+                            value=Name(lineno=121, col_offset=1, id='newWordSynonym', ctx=Load()),
+                            attr='attrib',
+                            ctx=Store(),
+                        ),
+                    ],
+                    value=Dict(
+                        lineno=121,
+                        col_offset=25,
+                        keys=[
+                            Str(lineno=121, col_offset=26, s='id'),
+                            Str(lineno=121, col_offset=43, s='dict'),
+                        ],
+                        values=[
+                            Name(lineno=121, col_offset=32, id='synonymID', ctx=Load()),
+                            Name(lineno=121, col_offset=51, id='dictionary', ctx=Load()),
+                        ],
+                    ),
+                ),
+                Assign(
+                    lineno=122,
+                    col_offset=1,
+                    targets=[
+                        Attribute(
+                            lineno=122,
+                            col_offset=1,
+                            value=Name(lineno=122, col_offset=1, id='newWordSynonym', ctx=Load()),
+                            attr='text',
+                            ctx=Store(),
+                        ),
+                    ],
+                    value=Call(
+                        lineno=122,
+                        col_offset=23,
+                        func=Attribute(
+                            lineno=122,
+                            col_offset=23,
+                            value=Name(lineno=122, col_offset=23, id='result', ctx=Load()),
+                            attr='decode',
+                            ctx=Load(),
+                        ),
+                        args=[Str(lineno=122, col_offset=37, s='utf8')],
+                        keywords=[],
+                    ),
+                ),
+            ],
+            decorator_list=[],
+            returns=None,
+        ),
+        FunctionDef(
+            lineno=125,
+            col_offset=0,
+            name='isWordExist',
+            args=arguments(
+                args=[arg(lineno=125, col_offset=16, arg='word', annotation=None)],
+                vararg=None,
+                kwonlyargs=[],
+                kw_defaults=[],
+                kwarg=None,
+                defaults=[],
+            ),
+            body=[
+                Assign(
+                    lineno=126,
+                    col_offset=1,
+                    targets=[Name(lineno=126, col_offset=1, id='root', ctx=Store())],
+                    value=Call(
+                        lineno=126,
+                        col_offset=8,
+                        func=Attribute(
+                            lineno=126,
+                            col_offset=8,
+                            value=Name(lineno=126, col_offset=8, id='mySynonym', ctx=Load()),
+                            attr='getroot',
+                            ctx=Load(),
+                        ),
+                        args=[],
+                        keywords=[],
+                    ),
+                ),
+                For(
+                    lineno=127,
+                    col_offset=1,
+                    target=Name(lineno=127, col_offset=5, id='child', ctx=Store()),
+                    iter=Name(lineno=127, col_offset=14, id='root', ctx=Load()),
+                    body=[
+                        If(
+                            lineno=128,
+                            col_offset=2,
+                            test=Compare(
+                                lineno=128,
+                                col_offset=6,
+                                left=Call(
+                                    lineno=128,
+                                    col_offset=6,
+                                    func=Attribute(
+                                        lineno=128,
+                                        col_offset=6,
+                                        value=Subscript(
+                                            lineno=128,
+                                            col_offset=6,
+                                            value=Attribute(
+                                                lineno=128,
+                                                col_offset=6,
+                                                value=Name(lineno=128, col_offset=6, id='child', ctx=Load()),
+                                                attr='attrib',
+                                                ctx=Load(),
+                                            ),
+                                            slice=Index(
+                                                value=Str(lineno=128, col_offset=19, s='value'),
+                                            ),
+                                            ctx=Load(),
+                                        ),
+                                        attr='encode',
+                                        ctx=Load(),
+                                    ),
+                                    args=[Str(lineno=128, col_offset=35, s='utf8')],
+                                    keywords=[],
+                                ),
+                                ops=[Eq()],
+                                comparators=[Name(lineno=128, col_offset=46, id='word', ctx=Load())],
+                            ),
+                            body=[
+                                Return(
+                                    lineno=129,
+                                    col_offset=3,
+                                    value=Tuple(
+                                        lineno=129,
+                                        col_offset=10,
+                                        elts=[
+                                            Name(lineno=129, col_offset=10, id='child', ctx=Load()),
+                                            NameConstant(lineno=129, col_offset=17, value=True),
+                                        ],
+                                        ctx=Load(),
+                                    ),
+                                ),
+                            ],
+                            orelse=[],
+                        ),
+                    ],
+                    orelse=[],
+                ),
+                Assign(
+                    lineno=130,
+                    col_offset=1,
+                    targets=[Name(lineno=130, col_offset=1, id='newWord', ctx=Store())],
+                    value=Call(
+                        lineno=130,
+                        col_offset=11,
+                        func=Attribute(
+                            lineno=130,
+                            col_offset=11,
+                            value=Name(lineno=130, col_offset=11, id='ET', ctx=Load()),
+                            attr='Element',
+                            ctx=Load(),
+                        ),
+                        args=[Str(lineno=130, col_offset=22, s='word')],
+                        keywords=[],
+                    ),
+                ),
+                Assign(
+                    lineno=131,
+                    col_offset=1,
+                    targets=[
+                        Attribute(
+                            lineno=131,
+                            col_offset=1,
+                            value=Name(lineno=131, col_offset=1, id='newWord', ctx=Load()),
+                            attr='attrib',
+                            ctx=Store(),
+                        ),
+                    ],
+                    value=Dict(
+                        lineno=131,
+                        col_offset=18,
+                        keys=[Str(lineno=131, col_offset=19, s='value')],
+                        values=[
+                            Call(
+                                lineno=131,
+                                col_offset=28,
+                                func=Attribute(
+                                    lineno=131,
+                                    col_offset=28,
+                                    value=Name(lineno=131, col_offset=28, id='word', ctx=Load()),
+                                    attr='decode',
+                                    ctx=Load(),
+                                ),
+                                args=[Str(lineno=131, col_offset=40, s='utf8')],
+                                keywords=[],
+                            ),
+                        ],
+                    ),
+                ),
+                Return(
+                    lineno=132,
+                    col_offset=1,
+                    value=Tuple(
+                        lineno=132,
+                        col_offset=8,
+                        elts=[
+                            Name(lineno=132, col_offset=8, id='newWord', ctx=Load()),
+                            NameConstant(lineno=132, col_offset=17, value=False),
+                        ],
+                        ctx=Load(),
+                    ),
+                ),
+            ],
+            decorator_list=[],
+            returns=None,
+        ),
+        FunctionDef(
+            lineno=135,
+            col_offset=0,
+            name='isSynonymExist',
+            args=arguments(
+                args=[
+                    arg(lineno=135, col_offset=19, arg='newWord', annotation=None),
+                    arg(lineno=135, col_offset=28, arg='result', annotation=None),
+                ],
+                vararg=None,
+                kwonlyargs=[],
+                kw_defaults=[],
+                kwarg=None,
+                defaults=[],
+            ),
+            body=[
+                For(
+                    lineno=136,
+                    col_offset=4,
+                    target=Name(lineno=136, col_offset=8, id='child', ctx=Store()),
+                    iter=Name(lineno=136, col_offset=17, id='newWord', ctx=Load()),
+                    body=[
+                        If(
+                            lineno=137,
+                            col_offset=8,
+                            test=Compare(
+                                lineno=137,
+                                col_offset=12,
+                                left=Call(
+                                    lineno=137,
+                                    col_offset=12,
+                                    func=Attribute(
+                                        lineno=137,
+                                        col_offset=12,
+                                        value=Attribute(
+                                            lineno=137,
+                                            col_offset=12,
+                                            value=Name(lineno=137, col_offset=12, id='child', ctx=Load()),
+                                            attr='text',
+                                            ctx=Load(),
+                                        ),
+                                        attr='encode',
+                                        ctx=Load(),
+                                    ),
+                                    args=[Str(lineno=137, col_offset=30, s='utf8')],
+                                    keywords=[],
+                                ),
+                                ops=[Eq()],
+                                comparators=[Name(lineno=137, col_offset=41, id='result', ctx=Load())],
+                            ),
+                            body=[
+                                Return(
+                                    lineno=138,
+                                    col_offset=12,
+                                    value=NameConstant(lineno=138, col_offset=19, value=True),
+                                ),
+                            ],
+                            orelse=[],
+                        ),
+                    ],
+                    orelse=[],
+                ),
+                Return(
+                    lineno=139,
+                    col_offset=4,
+                    value=NameConstant(lineno=139, col_offset=11, value=False),
+                ),
+            ],
+            decorator_list=[],
+            returns=None,
+        ),
+        If(
+            lineno=145,
+            col_offset=0,
+            test=UnaryOp(
+                lineno=145,
+                col_offset=4,
+                op=Not(),
+                operand=Call(
+                    lineno=145,
+                    col_offset=8,
+                    func=Attribute(
+                        lineno=145,
+                        col_offset=8,
+                        value=Attribute(
+                            lineno=145,
+                            col_offset=8,
+                            value=Name(lineno=145, col_offset=8, id='os', ctx=Load()),
+                            attr='path',
+                            ctx=Load(),
+                        ),
+                        attr='isfile',
+                        ctx=Load(),
+                    ),
+                    args=[Name(lineno=145, col_offset=23, id='storageName', ctx=Load())],
+                    keywords=[],
+                ),
+            ),
+            body=[
+                Assign(
+                    lineno=146,
+                    col_offset=1,
+                    targets=[Name(lineno=146, col_offset=1, id='myfile', ctx=Store())],
+                    value=Call(
+                        lineno=146,
+                        col_offset=10,
+                        func=Name(lineno=146, col_offset=10, id='open', ctx=Load()),
+                        args=[
+                            Name(lineno=146, col_offset=15, id='storageName', ctx=Load()),
+                            Str(lineno=146, col_offset=28, s='w'),
+                        ],
+                        keywords=[],
+                    ),
+                ),
+                Expr(
+                    lineno=147,
+                    col_offset=1,
+                    value=Call(
+                        lineno=147,
+                        col_offset=1,
+                        func=Attribute(
+                            lineno=147,
+                            col_offset=1,
+                            value=Name(lineno=147, col_offset=1, id='myfile', ctx=Load()),
+                            attr='write',
+                            ctx=Load(),
+                        ),
+                        args=[Name(lineno=147, col_offset=14, id='startupForXML', ctx=Load())],
+                        keywords=[],
+                    ),
+                ),
+                Expr(
+                    lineno=148,
+                    col_offset=1,
+                    value=Call(
+                        lineno=148,
+                        col_offset=1,
+                        func=Attribute(
+                            lineno=148,
+                            col_offset=1,
+                            value=Name(lineno=148, col_offset=1, id='myfile', ctx=Load()),
+                            attr='close',
+                            ctx=Load(),
+                        ),
+                        args=[],
+                        keywords=[],
+                    ),
+                ),
+            ],
+            orelse=[],
+        ),
+        Assign(
+            lineno=150,
+            col_offset=0,
+            targets=[Name(lineno=150, col_offset=0, id='mySynonym', ctx=Store())],
+            value=Call(
+                lineno=150,
+                col_offset=12,
+                func=Attribute(
+                    lineno=150,
+                    col_offset=12,
+                    value=Name(lineno=150, col_offset=12, id='ET', ctx=Load()),
+                    attr='parse',
+                    ctx=Load(),
+                ),
+                args=[Name(lineno=150, col_offset=21, id='storageName', ctx=Load())],
+                keywords=[],
+            ),
+        ),
+        If(
+            lineno=152,
+            col_offset=0,
+            test=Compare(
+                lineno=152,
+                col_offset=4,
+                left=Subscript(
+                    lineno=152,
+                    col_offset=4,
+                    value=Attribute(
+                        lineno=152,
+                        col_offset=4,
+                        value=Name(lineno=152, col_offset=4, id='sys', ctx=Load()),
+                        attr='argv',
+                        ctx=Load(),
+                    ),
+                    slice=Index(
+                        value=Num(lineno=152, col_offset=13, n=1),
+                    ),
+                    ctx=Load(),
+                ),
+                ops=[Eq()],
+                comparators=[Name(lineno=152, col_offset=19, id='fileArgumentTag', ctx=Load())],
+            ),
+            body=[
+                Expr(
+                    lineno=153,
+                    col_offset=4,
+                    value=Call(
+                        lineno=153,
+                        col_offset=4,
+                        func=Name(lineno=153, col_offset=4, id='analyzeFile', ctx=Load()),
+                        args=[
+                            Subscript(
+                                lineno=153,
+                                col_offset=16,
+                                value=Attribute(
+                                    lineno=153,
+                                    col_offset=16,
+                                    value=Name(lineno=153, col_offset=16, id='sys', ctx=Load()),
+                                    attr='argv',
+                                    ctx=Load(),
+                                ),
+                                slice=Index(
+                                    value=Num(lineno=153, col_offset=25, n=2),
+                                ),
+                                ctx=Load(),
+                            ),
+                        ],
+                        keywords=[],
+                    ),
+                ),
+            ],
+            orelse=[
+                Expr(
+                    lineno=155,
+                    col_offset=1,
+                    value=Call(
+                        lineno=155,
+                        col_offset=1,
+                        func=Name(lineno=155, col_offset=1, id='onlineSearch', ctx=Load()),
+                        args=[
+                            Subscript(
+                                lineno=155,
+                                col_offset=14,
+                                value=Attribute(
+                                    lineno=155,
+                                    col_offset=14,
+                                    value=Name(lineno=155, col_offset=14, id='sys', ctx=Load()),
+                                    attr='argv',
+                                    ctx=Load(),
+                                ),
+                                slice=Index(
+                                    value=Num(lineno=155, col_offset=23, n=1),
+                                ),
+                                ctx=Load(),
+                            ),
+                        ],
+                        keywords=[],
+                    ),
+                ),
+                Expr(
+                    lineno=156,
+                    col_offset=1,
+                    value=Call(
+                        lineno=156,
+                        col_offset=1,
+                        func=Name(lineno=156, col_offset=1, id='localSearch', ctx=Load()),
+                        args=[
+                            Subscript(
+                                lineno=156,
+                                col_offset=13,
+                                value=Attribute(
+                                    lineno=156,
+                                    col_offset=13,
+                                    value=Name(lineno=156, col_offset=13, id='sys', ctx=Load()),
+                                    attr='argv',
+                                    ctx=Load(),
+                                ),
+                                slice=Index(
+                                    value=Num(lineno=156, col_offset=22, n=1),
+                                ),
+                                ctx=Load(),
+                            ),
+                        ],
+                        keywords=[],
+                    ),
+                ),
+            ],
+        ),
+    ],
+)
